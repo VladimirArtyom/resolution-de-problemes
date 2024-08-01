@@ -1,4 +1,4 @@
-use std::{collections::HashMap, io::{self, Read}};
+use std::{collections::HashMap, io::{self, Read}, str::Chars};
 pub fn cf_watermelon() {
 
     let mut input = String::new();
@@ -74,7 +74,7 @@ pub fn stones_on_the_table() {
     let mut stones = String::new();
     io::stdin().read_line(&mut input).expect("Failed to read line");
     io::stdin().read_line(&mut stones).expect("Failed to read line");
- 
+
     let mut answer: i32 = 0;
     for indx in 0..stones.len() - 1 {
         if stones.chars().nth(indx) == stones.chars().nth(indx + 1) {
@@ -87,7 +87,7 @@ pub fn stones_on_the_table() {
 pub fn dp_stones_on_the_table() {
     let mut total = String::new();
     let mut stones_str = String::new();
-    
+
     io::stdin().read_line(&mut total).expect("cannot read line");
     io::stdin().read_line(&mut stones_str).expect("cannot read line");
 
@@ -105,10 +105,10 @@ pub fn dp_stones_on_the_table() {
 
 
 pub fn dp_elephant() {
-    
+
     let mut input: String = String::new();
     io::stdin().read_line(&mut input).expect("Faild to read line");
-    
+
     let mut x: usize = input.trim().parse::<usize>().unwrap();
 
     let mut dp: Vec<usize> = Vec::new();
@@ -129,5 +129,85 @@ pub fn dp_elephant() {
         }
     }
     println!("{}", dp.len());
+}
+
+pub fn cf_nearly_lucky_number() {
+
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).expect("Failed to read line");
+    let mut int_input: u64 = input.trim().parse::<u64>().unwrap();
+    let mut ans: i8 = 0;
+    while int_input != 0{
+        let value: u64 = int_input % 10;
+        if value == 4 {
+            ans += 1;
+        }
+
+        if value == 7 {
+            ans += 1
+        }
+        int_input = int_input / 10;
+    }
+
+    if ans == 4 || ans == 7{
+        println!("YES");
+    } else {
+        println!("NO");
+    }
+}
+
+pub fn cf_wrong_subtraction() {
+    
+    let mut input : String = String::new();
+    io::stdin().read_line(&mut input).expect("failed to read line");
+    
+    let inputs = input.split(" ").collect::<Vec<&str>>();
+
+    let mut num: i32 = inputs[0].trim().parse::<i32>().unwrap();
+    let step: i32 = inputs[1].trim().parse::<i32>().unwrap();
+    
+    for _ in 0..step {
+        if num % 10 == 0{
+            num = num / 10;
+        } else {
+            num = num - 1;
+        }
+    }
+
+    println!("{}", num);
+    
+}
+
+pub fn cf_anton_and_danik() {
+    
+    let mut input_1 : String = String::new();
+    let mut input_2: String = String::new();
+    
+    io::stdin().read_line(&mut input_1).expect("Failed to read line");
+    io::stdin().read_line(&mut input_2).expect("Failed to read line");
+
+    let mut int_input: i32 = input_1.trim().parse().unwrap() ;
+    let char_2_input: std::str::Chars = input_2.chars();
+
+    let mut ada: i32 = 0;
+    let mut dan: i32 = 0;
+
+    for ch in char_2_input{
+        if ch == 'A' {
+            ada += 1;
+        }
+        else if ch == 'D' {
+            dan += 1;
+        } 
+    }
+        
+    if ada > dan {
+        println!("Anton");
+    } else if ada < dan {
+        println!("Danik");
+    } else {
+        println!("Friendship");
+    }
+
 }
 
