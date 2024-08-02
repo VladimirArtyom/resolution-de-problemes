@@ -211,3 +211,97 @@ pub fn cf_anton_and_danik() {
 
 }
 
+pub fn cf_divisibility_problem() {
+    let mut main_input: String = String::new();
+    io::stdin().read_line(&mut main_input).expect("No you can't");
+    
+    let loop_main: i64 = main_input.trim().parse().unwrap();
+    let mut vec_ans: Vec<i32> = vec![];
+    for _ in 0..loop_main {
+        let mut input_1: String = String::new();
+
+        io::stdin().read_line(&mut input_1).expect("Failed to read line");
+
+        let vec = input_1.trim().split(" ").collect::<Vec<&str>>();
+        let int_input_1: i32 = vec[0].trim().parse::<i32>().unwrap();
+        let int_input_2: i32 = vec[1].trim().parse::<i32>().unwrap();
+        
+        if int_input_1 % int_input_2 == 0 {
+            vec_ans.push(0);
+        } else {
+            let remainder : i32 = int_input_1 % int_input_2;
+            vec_ans.push(int_input_2 - remainder);
+        }
+    }
+
+    for i in vec_ans {
+        println!("{}", i);
+    }
+}
+
+pub fn cf_policeman() {
+
+    let mut input: String = String::new();
+    let mut input_2: String = String::new();
+    io::stdin().read_line(&mut input)
+        .expect("Failed to read line");
+
+    io::stdin().read_line(&mut input_2)
+        .expect("Failed to read line");
+
+    let vec_input_2: Vec<i32>= input_2.split(" ").map(|x| x.trim().parse::<i32>().unwrap()).collect();
+    let mut available_officers: i32 = 0;
+    let mut available_crimes: i32 = 0;
+
+
+    for event in vec_input_2 {
+        if event == -1 { 
+            if available_officers > 0 {
+                available_officers -= 1;
+            }
+            else {
+                available_crimes +=1;
+            }
+        }
+        else {
+            available_officers += event;
+        }
+    }
+
+
+    println!("{}", available_crimes);
+
+}
+
+pub fn sum_of_round_numbers() {
+    
+    let mut input = String::new();
+
+    io::stdin().read_line(&mut input).expect("Failed to read line");
+
+    let number: i32 = input.trim().parse().expect("Please type a number");
+
+    for _ in 0..number {
+        let mut input = String::new();
+        io::stdin().read_line(&mut input).expect("Failed to read line");
+        let mut num = input.trim().parse::<i32>().unwrap();
+
+
+            let mut ve: Vec<i32> = Vec::new();
+            let mut multiplier: i32 = 1;
+            while num > 0{
+
+                let num_dev = num % 10;
+                if num_dev != 0 {
+                    ve.push(num_dev * multiplier);
+                }
+                multiplier *= 10;
+                num = num / 10;
+            }
+            println!("{}", ve.len());
+            for i in ve {
+                print!("{} ", i);
+            }
+    }
+}
+
