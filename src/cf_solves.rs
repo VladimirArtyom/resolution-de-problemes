@@ -305,3 +305,33 @@ pub fn sum_of_round_numbers() {
     }
 }
 
+
+pub fn cf_soldier_and_bananas() { 
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).expect("cannot read line");
+    
+    let veca: Vec<i32> = input.trim().split(" ").map(|x| x.trim().parse::<i32>().unwrap()).collect();
+    
+    let (k, n, w) = (veca[0], veca[1], veca[2]);
+    
+    
+    let mut total: i32= 0; 
+    for i in 1..=w{
+        total += i * k;
+    }
+
+    if total - n < 0 {
+        println!("{}", 0);
+        return;
+    }
+
+    total = total -  n;
+
+    println!("{}", total);
+
+}
+
+
+pub fn cf_translation() {
+    
+}
